@@ -3,13 +3,32 @@
 
 using namespace std;
 
+int GCD(int a, int b)
+{
+	if (b == 0) return a;
+	if (b > a)	std::swap(a,b);
+
+	int t;
+	while (b !=0 )
+	{
+		t = b;
+		b = a % b;
+		a = t;
+	}
+
+	return a;
+}
+
 class Rat
 {
 public:
-	Rat(int _n = 0, int _d = 1)//: n(_n), d(_d) {};
+
+	Rat(int _n = 0, int _d = 1)
 	{
-		n = _n;
-		d = _d;
+		int t = GCD(_n, _d);
+
+		n = _n / t;
+		d = _d / t;
 	}
 	friend Rat operator+ (Rat a, Rat b);
 	friend Rat operator- (Rat a, Rat b);
@@ -17,7 +36,6 @@ public:
 	friend Rat operator/ (Rat a, Rat b);
 	friend Rat operator^ (Rat a, int p);
 	friend ostream& operator<< (ostream& out, Rat a);
-	friend int GCD(int a, int b);
 	friend Rat& simplify(Rat& a);
 
 private:
@@ -79,16 +97,6 @@ ostream& operator<< (ostream& out, Rat a)
 	else 
 		out << a.n << "/" << a.d;
 	return out;
-}
-
-int GCD(int a, int b)
-{
-	if (b == 0) return a;
-	a = (a >= 0) ? a : -a;	
-	b = (b >  0) ? b : -b;	
-	if (b > a)	std::swap(a,b);
-
-	return GCD(b, a % b);
 }
 
 Rat& simplify(Rat& a)
