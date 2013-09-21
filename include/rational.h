@@ -1,4 +1,5 @@
 // Rat.h
+#include <iostream>
 
 using namespace std;
 
@@ -83,6 +84,8 @@ ostream& operator<< (ostream& out, Rat a)
 int GCD(int a, int b)
 {
 	if (b == 0) return a;
+	a = (a >= 0) ? a : -a;	
+	b = (b >  0) ? b : -b;	
 	if (b > a)	std::swap(a,b);
 
 	return GCD(b, a % b);
@@ -93,5 +96,12 @@ Rat& simplify(Rat& a)
 	int t = GCD(a.n, a.d);
 	a.n = a.n / t;
 	a.d = a.d / t;
+
+	if (a.d == -1)
+	{
+		a.n = -a.n;
+		a.d = 1;
+	}
+
 	return a;
 }
