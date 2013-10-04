@@ -93,7 +93,7 @@ ostream& operator<< (ostream& out, Rat a)
 	if (a.d == 0)
 	{
 	    if (a.n > 0)
-		out << "+Inf";
+	    	out << "+Inf";
 	    else if (a.n < 0)
 	        out << "-Inf";
 	    else // a.n == 0
