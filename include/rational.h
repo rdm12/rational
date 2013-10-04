@@ -91,12 +91,14 @@ ostream& operator<< (ostream& out, Rat a)
 {
 	simplify(a);
 	if (a.d == 0)
+	{
 	    if (a.n > 0)
 		out << "+Inf";
 	    else if (a.n < 0)
 	        out << "-Inf";
-	    else // a.n = 0
+	    else // a.n == 0
 	        out << "NaN";
+	}
 	else if (a.d == 1)
 		out << a.n;
 	else 
