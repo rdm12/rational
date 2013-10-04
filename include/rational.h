@@ -16,7 +16,7 @@ int GCD(int a, int b)
 		a = t;
 	}
 
-	return a;
+	return a > 0 ? a : -a;
 }
 
 class Rat
